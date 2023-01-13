@@ -37,20 +37,20 @@ export function App() {
   const stars = Array(5).fill(0);
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
+  const [textareaValue, setTextareaValue] = useState("");
 
   const handleClick = (value) => {
     setCurrentValue(value);
-    console.log(setCurrentValue(value));
+    //console.log(value);
   };
 
   const handleMouseOver = (newHoverValue) => {
     setHoverValue(newHoverValue);
-    console.log(setHoverValue(newHoverValue));
+    //console.log(newHoverValue);
   };
 
   const handleMouseLeave = () => {
     setHoverValue(undefined);
-    console.log(setHoverValue(undefined));
   };
 
   // function handleClick(value) {
@@ -68,7 +68,10 @@ export function App() {
   //   console.log(setHoverValue(undefined));
   // }
 
-  function handleSubmit() {}
+  function handleResult() {
+    console.log(currentValue);
+    console.log(textareaValue);
+  }
 
   return (
     <div style={styles.container}>
@@ -88,10 +91,13 @@ export function App() {
               onClick={() => handleClick(index + 1)}
               onMouseOver={() => handleMouseOver(index + 1)}
               onMouseLeave={handleMouseLeave}
+              value={currentValue}
+              onChange={(e) => setcurrentValue(e.target.value)}
             />
           );
         })}
       </div>
+
       <textarea
         name=""
         id=""
@@ -99,8 +105,10 @@ export function App() {
         rows="10"
         placeholder="Whats is your feedback?"
         style={styles.textarea}
+        value={textareaValue}
+        onChange={(e) => setTextareaValue(e.target.value)}
       ></textarea>
-      <button style={styles.button} onClick={handleSubmit}>
+      <button style={styles.button} onClick={handleResult}>
         Submit
       </button>
     </div>
